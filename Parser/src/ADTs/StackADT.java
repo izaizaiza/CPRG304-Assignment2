@@ -6,7 +6,7 @@ package ADTs;
 
 /**
  *
- * @author izalu
+ * @author dlg12
  */
 public interface StackADT<T> {
     void push(T element);
