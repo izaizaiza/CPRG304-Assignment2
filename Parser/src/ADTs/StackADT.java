@@ -8,6 +8,10 @@ package ADTs;
  *
  * @author izalu
  */
-public interface StackADT {
-    
+public interface StackADT<T> {
+    void push(T element);
+    T pop();
+    T peek();
+    boolean isEmpty();
+    int size();
 }
