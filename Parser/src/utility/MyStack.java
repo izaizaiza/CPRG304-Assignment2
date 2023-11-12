@@ -6,7 +6,7 @@ package utility;
 
 /**
  *
- * @author izalu
+ * @author dlg12
  */
 import ADTs.StackADT;
 import java.util.*;

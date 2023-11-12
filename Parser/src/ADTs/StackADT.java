@@ -7,11 +7,33 @@ package ADTs;
 /**
  *
  * @author dlg12
+ * @param <E> - the data type
  */
-public interface StackADT<T> {
-    void push(T element);
-    T pop();
-    T peek();
+public interface StackADT<E> {
+    /**
+     * 
+     * @param element 
+     * adds element to the stack
+     */
+    void push(E element);
+    /**
+     * 
+     * removes the last element in the stack 
+     */
+    E pop();
+    /**
+     * 
+     * @return E, the element in the stack 
+     */
+    E peek();
+    /**
+     * 
+     * @return boolean to see if stack has no elements 
+     */
     boolean isEmpty();
+    /**
+     * 
+     * @return int - how many elements in the stack 
+     */
     int size();
 }

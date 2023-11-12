@@ -5,9 +5,11 @@ package ADTs;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 
+
 /**
- *
+ * 
  * @author izalu
+ * @param <E> 
  */
 public interface QueueADT<E> {
     
@@ -29,14 +31,14 @@ public interface QueueADT<E> {
     /**
      * removes the first element in the queue
      */
-    public void dequeue();
+    public E dequeue();
     
     
     /**
      * accesses the first element in the queue without removing it
      *
      */
-    public void peek();
+    public E peek();
     
     
     /**
@@ -56,7 +58,9 @@ public interface QueueADT<E> {
     /**
      * @return  an array containing all of the items in this queue
      */
-    public Object[] toArray( E[] queue);
+    public E[] toArray( E[] queue);
+    
+
     
     
     /**
