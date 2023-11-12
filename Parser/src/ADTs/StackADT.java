@@ -19,6 +19,7 @@ public interface StackADT<E> {
     /**
      * 
      * removes the last element in the stack 
+     * @return E
      */
     E pop();
     /**
