@@ -30,13 +30,14 @@ public interface QueueADT<E> {
     
     /**
      * removes the first element in the queue
+     * @return E
      */
     public E dequeue();
     
     
     /**
      * accesses the first element in the queue without removing it
-     *
+     * @return E
      */
     public E peek();
     
@@ -56,6 +57,7 @@ public interface QueueADT<E> {
     
     
     /**
+     * @param queue which E[] array 
      * @return  an array containing all of the items in this queue
      */
     public E[] toArray( E[] queue);
