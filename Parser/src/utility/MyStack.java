@@ -9,64 +9,106 @@ package utility;
  * @author dlg12
  */
 import ADTs.StackADT;
-import java.util.*;
+import ADTs.Iterator;
+import utility.MyArrayList;
 
-public class MyStack<T> implements StackADT<T> {
-    private static final int DEFAULT_CAPACITY = 10;
-    private T[] stack;
-    private int top;
+import java.util.EmptyStackException;
+
+public class MyStack<E> implements StackADT<E> {
+    private MyArrayList<E> list;
 
     public MyStack() {
-        stack = (T[]) new Object[DEFAULT_CAPACITY];
-        top = -1;
-    }
-
-    public MyStack(int initialCapacity) {
-        stack = (T[]) new Object[initialCapacity];
-        top = -1;
+        this.list = new MyArrayList<>();
     }
 
     @Override
-    public void push(T element) {
-        if (size() == stack.length) {
-            expandCapacity();
-        }
-        top++;
-        stack[top] = element;
+    public void push(E toAdd) throws NullPointerException {
+        list.add(toAdd);
     }
 
     @Override
-    public T pop() {
+    public E pop() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        T element = stack[top];
-        stack[top] = null;
-        top--;
-        return element;
+        return list.remove(list.size() - 1);
     }
 
     @Override
-    public T peek() {
+    public E peek() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return stack[top];
+        return list.get(list.size() - 1);
+    }
+
+    @Override
+    public void clear() {
+        list.clear();
     }
 
     @Override
     public boolean isEmpty() {
-        return top == -1;
+        return list.isEmpty();
+    }
+
+    @Override
+    public Object[] toArray() {
+        return list.toArray();
+    }
+
+    @Override
+    public E[] toArray(E[] holder) throws NullPointerException {
+        return list.toArray(holder);
+    }
+
+    @Override
+    public boolean contains(E toFind) {
+        return list.contains(toFind);
+    }
+
+    @Override
+    public int search(E toFind) {
+        for (int i = list.size() - 1; i >= 0; i--) {
+            if (toFind.equals(list.get(i))) {
+                return list.size() - i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return list.iterator();
+    }
+
+    @Override
+    public boolean equals(StackADT<E> that) {
+        if (that == null) {
+            return false;
+        }
+
+        if (this.size() != that.size()) {
+            return false;
+        }
+
+        Iterator<E> thisIterator = this.iterator();
+        Iterator<E> thatIterator = that.iterator();
+
+        while (thisIterator.hasNext()) {
+            E thisElement = thisIterator.next();
+            E thatElement = thatIterator.next();
+
+            if (!thisElement.equals(thatElement)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
     public int size() {
-        return top + 1;
-    }
-
-    private void expandCapacity() {
-        T[] newArray = (T[]) new Object[stack.length * 2];
-        System.arraycopy(stack, 0, newArray, 0, stack.length);
-        stack = newArray;
+        return list.size();
     }
 }

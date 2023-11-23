@@ -8,72 +8,41 @@
  * @author izalu
  */
 package utility;
-import ADTs.QueueADT;
 import ADTs.Iterator;
+import ADTs.QueueADT;
+import exceptions.EmptyQueueException;
 
-import utility.MyArrayList;
 public class MyQueue<E> implements QueueADT<E> {
-    private MyArrayList<E> list;
+    private MyDLL<E> list;
 
     public MyQueue() {
-        this.list = new MyArrayList<>();
+        this.list = new MyDLL<>();
     }
 
     @Override
-    public int size() {
-        return list.size();
+    public void enqueue(E toAdd) throws NullPointerException {
+        list.add(toAdd);
     }
 
     @Override
-    public void enqueue(E element) {
-        list.add(element);
-    }
-
-    @Override
-    public E dequeue() {
+    public E dequeue() throws EmptyQueueException {
         if (isEmpty()) {
-            throw new IllegalStateException("Queue is empty");
+            throw new EmptyQueueException("Queue is empty");
         }
         return list.remove(0);
     }
 
     @Override
-    public E peek() {
+    public E peek() throws EmptyQueueException {
         if (isEmpty()) {
-            throw new IllegalStateException("Queue is empty");
+            throw new EmptyQueueException("Queue is empty");
         }
         return list.get(0);
     }
 
     @Override
-    public boolean equals(QueueADT<E> otherQueue) {
-        // Implement the equality comparison logic
-        // This depends on how you want to compare two queues
-        // It might involve comparing each element in order
-        // or using other criteria specific to your use case.
-        // For simplicity, let's assume two queues are equal if their elements are equal.
-        return list.equals(((MyQueue<E>) otherQueue).list);
-    }
-
-   
-    @Override
-    public Iterator<E> iterator(){
-        Iterator<E> iterator = this.list.iterator();
-        return iterator;
-    }
-
-    @Override
-    public E[] toArray(E[] queue) {
-        return list.toArray(queue);
-    }
-    
-    
-
-    @Override
-    public boolean isFull() {
-        // This might be true depending on the underlying implementation
-        // If you have a fixed-size implementation, you can implement it accordingly
-        return false;
+    public void dequeueAll() {
+        list.clear();
     }
 
     @Override
@@ -82,7 +51,45 @@ public class MyQueue<E> implements QueueADT<E> {
     }
 
     @Override
-    public void dequeueAll() {
-        list.clear();
+    public Iterator<E> iterator() {
+        return list.iterator();
+    }
+
+    @Override
+    public boolean equals(QueueADT<E> that) {
+        if (that == null || this.size() != that.size()) {
+            return false;
+        }
+
+        Iterator<E> thisIterator = this.iterator();
+        Iterator<E> thatIterator = that.iterator();
+
+        while (thisIterator.hasNext()) {
+            if (!thisIterator.next().equals(thatIterator.next())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return list.toArray();
+    }
+
+    @Override
+    public E[] toArray(E[] holder) throws NullPointerException {
+        return list.toArray(holder);
+    }
+
+    @Override
+    public boolean isFull() {
+        return false;
+    }
+
+    @Override
+    public int size() {
+        return list.size();
     }
 }
