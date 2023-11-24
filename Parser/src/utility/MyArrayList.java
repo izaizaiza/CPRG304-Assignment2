@@ -5,6 +5,7 @@
 package utility;
 import ADTs.Iterator;
 import ADTs.ListADT;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -19,7 +20,7 @@ public class MyArrayList<E> implements ListADT<E> {
     private int size;
     
     /**
-     * 
+     * MyArrayList Constructor
      */
     public MyArrayList(){
         this.array = new Object[defaultCapacity]; // created an object array with capacity of 5 elements
@@ -27,7 +28,7 @@ public class MyArrayList<E> implements ListADT<E> {
     }
     
     /**
-     * 
+     * method <code>size()</code> is a method for getting the size of the array
      * @return int size - size of Array
      */
     @Override
@@ -36,7 +37,7 @@ public class MyArrayList<E> implements ListADT<E> {
     }
     
     /**
-     * 
+     * method <code>clear()</code> clears the array and turns its size to 0
      */
     @Override
     public void clear() {
@@ -45,7 +46,8 @@ public class MyArrayList<E> implements ListADT<E> {
     }
     
     /**
-     * 
+     * method <code>add(params)</code> adds an element (toAdd) of type E to the array
+     * at the <code>index</code> provided
      * @param index
      * @param toAdd
      * @return
@@ -72,20 +74,30 @@ public class MyArrayList<E> implements ListADT<E> {
     
     
     /**
-     * 
+     * method <code>add()</code>  overloads the other add() method;
+     * this method adds the given element at the end of the MyArrayList instance
+     * which is not like the other which takes an additional parameter to specify the index where the element is added
      * @param toAdd
-     * @return
+     * @return - a boolean when 
      * @throws NullPointerException 
      */
     @Override
     public boolean add(E toAdd) throws NullPointerException {
+        try{
         ensureCapacity(size + 1);
         array[size++] = toAdd;
         return true;
+        }
+        catch(Exception E){
+            System.out.println("Something went wrong adding the element to the array.");
+            return false;
+        }
+        
     }
 
     /**
-     * 
+     * method <code>addAll(param)</code> takes a list and adds all its elements
+     * to the MyArrayList instance.
      * @param toAdd
      * @return
      * @throws NullPointerException 
@@ -104,9 +116,10 @@ public class MyArrayList<E> implements ListADT<E> {
     
     
     /**
-     * 
+     * method <code>get(index)</code> takes an index parameter and returns the value in
+     * the index of the the MyArrayList Instance
      * @param index
-     * @return
+     * @return E array[index]
      * @throws IndexOutOfBoundsException 
      */
     @Override
@@ -118,9 +131,10 @@ public class MyArrayList<E> implements ListADT<E> {
     }
     
     /**
-     * 
+     * The method <code>remove(index)</code> removes the element in the MyArrayList
+     * instance at the given index.
      * @param index
-     * @return
+     * @return - the element removed
      * @throws IndexOutOfBoundsException 
      */
     @Override
@@ -142,9 +156,10 @@ public class MyArrayList<E> implements ListADT<E> {
         return removedElement;
     }
     /**
-     * 
+     * Method <code>remove(toRemove)</code>overloads the other remove();
+     * It takes an element to be removed and returns the index it was at.
      * @param toRemove
-     * @return
+     * @return - the element removed; other wise returns null
      * @throws NullPointerException 
      */
     @Override
@@ -157,10 +172,11 @@ public class MyArrayList<E> implements ListADT<E> {
     }
     
     /**
-     * 
+     * method <code>set(index, toChange)</code> sets or changes the value or element at a given index of
+     * the array (i.e., MyArrayList instance).
      * @param index
      * @param toChange
-     * @return
+     * @return - the previous element that was changed.
      * @throws NullPointerException
      * @throws IndexOutOfBoundsException 
      */
@@ -176,8 +192,9 @@ public class MyArrayList<E> implements ListADT<E> {
     }
     
     /**
-     * 
-     * @return 
+     * The method <code>isEmpty()</code> checks if MyArrayList Instance is empty (i.e., if size is 0)
+     * It returns true if it indeed is empty and false if not.
+     * @return - a boolean whether MyArrayList is empty or not.
      */
     @Override
     public boolean isEmpty() {
@@ -185,9 +202,10 @@ public class MyArrayList<E> implements ListADT<E> {
     }
 
     /**
-     * 
-     * @param toFind
-     * @return
+     * The method <code>contains(toFind)</code> checks whether the My array instance contains
+     * the given element of type E.
+     * @param toFind - an element of type E
+     * @return - a boolean whether MyArrayList instance contains toFind
      * @throws NullPointerException 
      */
     @Override
@@ -196,13 +214,16 @@ public class MyArrayList<E> implements ListADT<E> {
     }
     
     /**
-     * 
-     * @param toHold
-     * @return
+     * method <code>toArray(toHold)</code> converts elements of an internal array 
+     * to an array with the type `E`.
+     * @param toHold -  an array of type E[]
+     * @return - the array that contains the copied elements of the internal array
      * @throws NullPointerException 
      */
     @Override
     public E[] toArray(E[] toHold) throws NullPointerException {
+        // if array is not enough, create new array of the same type `E` and with
+        // the same size as array the internal array.
         if (toHold.length < size) {
             toHold = (E[]) new Object[size];
         }
@@ -216,8 +237,10 @@ public class MyArrayList<E> implements ListADT<E> {
     }
 
     /**
-     * 
-     * @return 
+     * Method <code>toArray()</code> overloads the other toArray(toHold) and
+     * takes no parameters and instead creates a new array of type `Object`,
+     * copies the elements of internal array and returns the new array
+     * @return - the new array.
      */
     @Override
     public Object[] toArray() {
@@ -230,12 +253,24 @@ public class MyArrayList<E> implements ListADT<E> {
 
         return result;
     }
-
+    
+    /**
+     * Creates an iterator for the elements in the class.
+     * @return - an instance of an iterator of type `E` for the class
+     */
     @Override
     public Iterator<E> iterator() {
         return new MyIterator();
     }
-
+    
+    /**
+     * Ensures that the internal array has enough capacity to accommodate at least
+     * a specified minimum of elements which is the parameter.
+     * if the old capacity is less than the minimum, then it doubles the old capacity.
+     * Then creates a new array of type `Object` with the new capacity as the size,
+     * and copies the current element in the array into the new one.
+     * @param minCapacity - the minimum capacity that the array is supposed to hold.
+     */
     private void ensureCapacity(int minCapacity) {
         int oldCapacity = array.length;
         if (minCapacity > oldCapacity) {
@@ -253,7 +288,13 @@ public class MyArrayList<E> implements ListADT<E> {
             array = newArray;
         }
     }
-
+    
+    /**
+     *  The <code>indexOf(toFind)</code> method searches for the index element in the internal
+     * array. If the given element (toFind) is found, it returns the index
+     * @param toFind - the element in the array to be found its index.
+     * @return - the index of the element type: int
+     */
     private int indexOf(E toFind) {
         for (int i = 0; i < size; i++) {
             if (toFind.equals(array[i])) {
@@ -263,17 +304,32 @@ public class MyArrayList<E> implements ListADT<E> {
         return -1;
     }
 
+    /**
+     * Iterator class to implement Iterator<E> interface for MyArrayList.
+     * This iterator allows iterating over the element of the internal array.
+     */
     private class MyIterator implements Iterator<E> {
-
+        // The current index of the iterator
         private int currentIndex = 0;
-
+        
+        /**
+         * Checks if there are more elements in the array to iterate over
+         * @return true if there are more elements, false otherwise
+         */
         @Override
         public boolean hasNext() {
             return currentIndex < size;
         }
-
+        /**
+         * Retrieves the next element in the iteration
+         * @return  the next element in the iteration
+         * @throws NoSuchElementException if there are no more element in the iteration
+         */
         @Override
         public E next() {
+            if (!hasNext()){
+                throw new NoSuchElementException("No more elements in the array to iterate.");
+            }
             return (E) array[currentIndex++];
         }
     }

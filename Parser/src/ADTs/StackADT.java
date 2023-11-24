@@ -133,32 +133,3 @@ public interface StackADT<E> extends Serializable
 	 */
 	public int size();
 }
-//public interface StackADT<E> {
-    /**
-     * 
-     * @param element 
-     * adds element to the stack
-     */
-    //void push(E element);
-    /**
-     * 
-     * removes the last element in the stack 
-     * @return E
-     */
-    //E pop();
-    /**
-     * 
-     * @return E, the element in the stack 
-     */
-    //E peek();
-    /**
-     * 
-     * @return boolean to see if stack has no elements 
-     */
-    //boolean isEmpty();
-    /**
-     * 
-     * @return int - how many elements in the stack 
-     */
-    //int size();
-//}
