@@ -21,7 +21,7 @@ import java.util.NoSuchElementException;
  */
 
 
-public class MyArrayListTest {
+public class MyArrayListJUnitTest {
 
     private ListADT<String> myList;
 

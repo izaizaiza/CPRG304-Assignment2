@@ -18,7 +18,7 @@ import ADTs.QueueADT;
 import exceptions.EmptyQueueException;
 import utility.MyQueue;
 
-public class MyQueueTest {
+public class MyQueueJUnitTest {
 
     private QueueADT<Integer> queue;
 

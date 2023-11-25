@@ -21,7 +21,7 @@ import java.util.EmptyStackException;
  *
  * @author izalu
  */
-public class MyStackTest {
+public class MyStackJUnitTest {
 
     private StackADT<String> myStack;
 

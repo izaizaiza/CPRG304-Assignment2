@@ -19,7 +19,7 @@ import ADTs.Iterator;
 import ADTs.ListADT;
 import utility.MyDLL;
 
-public class MyDLLTest {
+public class MyDLLJUnitTest {
 
     private ListADT<String> myList;
 
