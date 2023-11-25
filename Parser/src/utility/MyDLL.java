@@ -307,6 +307,7 @@ public class MyDLL<E> implements ListADT<E> {
      * @throws NullPointerException if the given array is null
      */
     @Override
+    @SuppressWarnings("unchecked") // suppresses the type casting
     public E[] toArray(E[] toHold) throws NullPointerException {
         //check if the given array is null
         if (toHold == null) {

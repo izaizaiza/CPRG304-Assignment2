@@ -130,6 +130,7 @@ public class MyArrayList<E> implements ListADT<E> {
      * @throws IndexOutOfBoundsException if given an index not in range: 0 to size-1
      */
     @Override
+    @SuppressWarnings("unchecked")// supresses the casting
     public E get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
@@ -150,6 +151,7 @@ public class MyArrayList<E> implements ListADT<E> {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
 
+        @SuppressWarnings("unchecked") //this supresses the casting warning
         E removedElement = (E) array[index];
 
         // Shift elements to the left to fill the gap
@@ -193,6 +195,7 @@ public class MyArrayList<E> implements ListADT<E> {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
 
+        @SuppressWarnings("unchecked")
         E previousElement = (E) array[index];
         array[index] = toChange;
         return previousElement;
@@ -231,6 +234,7 @@ public class MyArrayList<E> implements ListADT<E> {
      * @throws NullPointerException if the array list to be converted is null;
      */
     @Override
+    @SuppressWarnings("unchecked")
     public E[] toArray(E[] toHold) throws NullPointerException {
         
         if(size==0){
@@ -340,6 +344,7 @@ public class MyArrayList<E> implements ListADT<E> {
          * @throws NoSuchElementException if there are no more element in the iteration
          */
         @Override
+        @SuppressWarnings("unchecked")
         public E next() {
             if (!hasNext()){
                 throw new NoSuchElementException("No more elements in the array to iterate.");
