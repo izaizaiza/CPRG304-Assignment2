@@ -7,7 +7,7 @@ package ADTs;
 /**
  *
  * @author dlg12
- * @param <E> - the data type
+ * @param <E> the data type of the elements in the stack
  */
 import java.io.Serializable;
 import java.util.EmptyStackException;
@@ -17,9 +17,7 @@ public interface StackADT<E> extends Serializable
 
 	/**
 	 * Pushes an item onto the top of this stack.
-	 * 
-	 * @param toAdd
-	 *            item to be pushed onto the top of the stack.
+	 * @param toAdd item to be pushed onto the top of the stack.
 	 * @throws NullPointerException when attempting to add a null element to
 	 * the stack.
 	 */
@@ -30,8 +28,7 @@ public interface StackADT<E> extends Serializable
 	 * the value of this function.
 	 * 
 	 * @return the item popped off the top of the stack.
-	 * @throws EmptyStackException
-	 *             if there are not items in the stack.
+	 * @throws EmptyStackException if there are not items in the stack.
 	 */
 	public E pop() throws EmptyStackException;
 
@@ -40,7 +37,7 @@ public interface StackADT<E> extends Serializable
 	 * stack.
 	 * 
 	 * @return the object at the top of this stack.
-	 * @throws EmptyStackException
+	 * @throws EmptyStackException if the stack is already empty
 	 */
 	public E peek() throws EmptyStackException;
 
@@ -51,9 +48,9 @@ public interface StackADT<E> extends Serializable
 	public void clear();
 
 	/**
-	 * Returns <code>true</code> if this Stack contains no items.
+	 * Returns true if this Stack contains no items.
 	 * 
-	 * @return <code>true</code> if this Stack contains no items.
+	 * @return true if this Stack contains no items.
 	 */
 	public boolean isEmpty();
 
@@ -72,13 +69,11 @@ public interface StackADT<E> extends Serializable
 	 * array. Obeys the general contract of the Collection.toArray(Object[])
 	 * method.
 	 * 
-	 * @param holder
-	 *            the array into which the elements of this stack are to be
-	 *            stored, if it is big enough; otherwise, a new array of the
-	 *            same runtime type is allocated for this purpose.
+	 * @param holder the array into which the elements of this stack are to be
+	 * stored, if it is big enough; otherwise, a new array of the
+	 * same runtime type is allocated for this purpose.
 	 * @return an array containing the elements of this stack.
-	 * @throws NullPointerException
-	 *             if the specified array is null.
+	 * @throws NullPointerException if the specified array is null.
 	 */
 	public E[] toArray( E[] holder ) throws NullPointerException;
 
@@ -87,11 +82,9 @@ public interface StackADT<E> extends Serializable
 	 * returns true if and only if this list contains at least one element e
 	 * such that (o==null ? e==null : o.equals(e)).
 	 * 
-	 * @param toFind
-	 *            element whose presence in this list is to be tested.
+	 * @param toFind element whose presence in this list is to be tested.
 	 * @return true if this list contains the specified element.
-	 * @throws NullPointerException
-	 *             if the specified element is null and this list does not
+	 * @throws NullPointerException if the specified element is null and this list does not
 	 *             support null elements.
 	 */
 	public boolean contains( E toFind ) throws NullPointerException;
@@ -103,8 +96,7 @@ public interface StackADT<E> extends Serializable
 	 * the stack; the topmost item on the stack is considered to be at distance
 	 * 1. The equals method is used to compare o to the items in this stack.
 	 * 
-	 * @param toFind
-	 *            the desired object.
+	 * @param toFind the desired object.
 	 * @return the 1-based position from the top of the stack where the object
 	 *         is located; the return value -1 indicates that the object is not
 	 *         on the stack.
@@ -123,7 +115,7 @@ public interface StackADT<E> extends Serializable
 	 * equal items appearing in the same order.
 	 * 
 	 * @param that the Stack ADT to be compared to this stack.
-	 * @return <code>true</code> if the stacks are equal.
+	 * @return true if the stacks are equal.
 	 */
 	public boolean equals( StackADT<E> that );
 	

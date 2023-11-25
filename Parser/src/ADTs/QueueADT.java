@@ -18,11 +18,11 @@ public interface QueueADT<E> extends Serializable
 {
 	/**
 	 * Enqueue will place the added item at the last position in the
-	 * queue.  This method will not allow <code>null</code> values
+	 * queue.  This method will not allow null values
 	 * to be added to the Queue.
 	 * 
 	 * @param toAdd the item to be added to the Queue.
-	 * @throws NullPointerException raised when a <code>null</code> object
+	 * @throws NullPointerException raised when a null object
 	 * is placed in the Queue.
 	 */
 	public void enqueue( E toAdd ) throws NullPointerException;
@@ -49,8 +49,8 @@ public interface QueueADT<E> extends Serializable
 	public void dequeueAll();
 	
 	/**
-	 * Returns <code>true</code> when the queue contains no items.
-	 * @return <code>true</code> when queue length is zero (0).
+	 * Returns true when the queue contains no items.
+	 * @return true when queue length is zero (0).
 	 */
 	public boolean isEmpty();
 	
@@ -66,7 +66,7 @@ public interface QueueADT<E> extends Serializable
 	 * equal items appearing in the same order.
 	 * 
 	 * @param that the Queue ADT to be compared to this queue.
-	 * @return <code>true</code> if the queues are equal.
+	 * @return true if the queues are equal.
 	 */
 	public boolean equals( QueueADT<E> that );
 	
@@ -81,14 +81,13 @@ public interface QueueADT<E> extends Serializable
 
 	/**
 	 * Returns an array containing all of the elements in this list in proper
-	 * sequence; the runtime type of the returned array is that of the specified
+	 * sequence; the run time type of the returned array is that of the specified
 	 * array. Obeys the general contract of the Collection.toArray(Object[])
 	 * method.
 	 * 
-	 * @param toHold
-	 *            the array into which the elements of this queue are to be
+	 * @param holder the array into which the elements of this queue are to be
 	 *            stored, if it is big enough; otherwise, a new array of the
-	 *            same runtime type is allocated for this purpose.
+	 *            same run time type is allocated for this purpose.
 	 * @return an array containing the elements of this queue.
 	 * @throws NullPointerException
 	 *          if the specified array is null.
@@ -99,7 +98,7 @@ public interface QueueADT<E> extends Serializable
 	 * (Optional Method) Returns true if the number of items in the queue
 	 * equals the length.  This operation is only implement when a fixed length
 	 * queue is required.
-	 * @return <code>true</code> if queue is at capacity.
+	 * @return true if queue is at capacity.
 	 */
 	public boolean isFull();
 	

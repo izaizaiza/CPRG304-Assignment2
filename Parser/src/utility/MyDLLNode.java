@@ -44,7 +44,7 @@ public class MyDLLNode<E> {
 
     /**
      * Gets the previous node in the DLL
-     * @return 
+     * @return the previous node
      */
     public MyDLLNode<E> getPrev() {
         return prev;
@@ -60,7 +60,7 @@ public class MyDLLNode<E> {
 
     /**
      * Set the data in the node; this node
-     * @param data 
+     * @param data the data to be set
      */
     public void setData(E data) {
         this.data = data;

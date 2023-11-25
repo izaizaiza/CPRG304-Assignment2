@@ -13,9 +13,10 @@ import java.util.NoSuchElementException;
 
 
 /**
- * The class <code>MyDLL</code> implements the ListADT and is a doubly linked list.
+ * The class MyDLL implements the ListADT and is a doubly linked list.
  * @author izalu
  * @author dlg12
+ * @param <E> the data type of DLL
  */
 public class MyDLL<E> implements ListADT<E> {
     private MyDLLNode<E> head;
@@ -33,7 +34,7 @@ public class MyDLL<E> implements ListADT<E> {
     }
     
     /**
-     * The method <code>size()</code> returns the size of the array (an Instance of MyDLL).
+     * The method size() returns the size of the array (an Instance of MyDLL).
      * @return the size of the DLL
      */
     @Override
@@ -42,7 +43,7 @@ public class MyDLL<E> implements ListADT<E> {
     }
     
     /**
-     * <code>clear()</code> clears the elements in the DLL returning the head and tail to have null values and size to 0.
+     * The method clear() clears the elements in the DLL returning the head and tail to have null values and size to 0.
      */
     @Override
     public void clear() {
@@ -53,9 +54,9 @@ public class MyDLL<E> implements ListADT<E> {
 
     /**
      * Adds an element of type `E` to the array at the given index
-     * @param index - the index where the element toAdd will be added in the DLL (an instance of MyDLL).
-     * @param toAdd - the element to be added to the the instance of MyDLL
-     * @return - true if the element is successfully added to the specified index.
+     * @param index the index where the element toAdd will be added in the DLL (an instance of MyDLL).
+     * @param toAdd the element to be added to the the instance of MyDLL
+     * @return true if the element is successfully added to the specified index.
      * @throws NullPointerException - if toAdd is null
      * @throws IndexOutOfBoundsException - if Index specified is less not within the range of index the DLL's elements are assigned
      */
@@ -96,12 +97,15 @@ public class MyDLL<E> implements ListADT<E> {
     
     /**
      * Adds the given element to the DLL
-     * @param toAdd
-     * @return
-     * @throws NullPointerException 
+     * @param toAdd the node/element to be added to this DLL
+     * @return true if the node is added to the DLL, false if not
+     * @throws NullPointerException if the element/node to be added is null
      */
     @Override
     public boolean add(E toAdd) throws NullPointerException {
+        if (toAdd==null){
+            throw new NullPointerException("The given node to add to the DLL is null");
+        }
         return add(size, toAdd);
     }
 
@@ -393,9 +397,9 @@ public class MyDLL<E> implements ListADT<E> {
      * Returns the node at the given index in this DLL
      * @param index the index of the node to retrieve
      * @return the node at the given index
-     * @throws IndexOutOfBounds if the index is not in 0 to size - 1 
+     * @throws IndexOutOfBoundsException if the index is not in 0 to size - 1 
      */
-    private MyDLLNode<E> getNodeAtIndex(int index) {
+    private MyDLLNode<E> getNodeAtIndex(int index) throws IndexOutOfBoundsException{
         // validate that the index is w/in the valid range
         if (index < 0 || index>= size){
             throw new IndexOutOfBoundsException("Index out of bounds: " + index);

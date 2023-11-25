@@ -4,10 +4,6 @@
  */
 package utility;
 
-/**
- *
- * @author dlg12
- */
 import ADTs.StackADT;
 import ADTs.Iterator;
 import utility.MyArrayList;
@@ -17,8 +13,8 @@ import java.util.EmptyStackException;
 
 /**
  * 
- * @author 
- * @param <E> 
+ * @author dlg12
+ * @param <E> the data type of the elements in the stack
  */
 public class MyStack<E> implements StackADT<E> {
     private MyArrayList<E> list;
