@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package tests;
+package test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,14 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import ADTs.Iterator;
 import ADTs.QueueADT;
 import exceptions.EmptyQueueException;
-import org.junit.*;
-import static org.junit.Assert.*;
+import utility.MyQueue;
 
-public class MyQueueTests {
+public class MyQueueTest {
 
     private QueueADT<Integer> queue;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         queue = new MyQueue<>();
     }
@@ -45,7 +42,10 @@ public class MyQueueTests {
 
         assertTrue(queue.isEmpty());
 
-        assertThrows(EmptyQueueException.class, queue::dequeue);
+        Throwable exception = assertThrows(EmptyQueueException.class, queue::dequeue);
+        
+        // Print out the exception message
+        System.out.println("Exception Message: " + exception.getMessage());
     }
 
     @Test
@@ -127,32 +127,3 @@ public class MyQueueTests {
         assertFalse(queue.equals(queue2));
     }
 }
-/*
-public class MyQueueTests {
-    
-    public MyQueueTests() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-}
-*/

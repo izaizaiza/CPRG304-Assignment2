@@ -6,6 +6,7 @@
 /**
  *
  * @author izalu
+ * @author dlg12
  */
 package utility;
 import ADTs.Iterator;

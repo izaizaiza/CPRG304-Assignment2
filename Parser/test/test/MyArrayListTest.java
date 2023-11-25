@@ -2,28 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package tests;
+package test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import ADTs.Iterator;
+import ADTs.ListADT;
+import utility.MyArrayList;
+import java.util.NoSuchElementException;
+
 
 /**
  *
  * @author izalu
  */
-import ADTs.Iterator;
-import ADTs.ListADT;
-import utility.MyArrayList;
 
-public class MyArrayListTests {
+
+public class MyArrayListTest {
 
     private ListADT<String> myList;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         myList = new MyArrayList<>();
     }
@@ -56,9 +58,13 @@ public class MyArrayListTests {
         assertEquals("Element 2", myList.get(2));
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void testAddAtIndexOutOfBounds() {
-        myList.add(1, "Element");
+        Throwable exception =
+        assertThrows(IndexOutOfBoundsException.class, () -> myList.add(1, "Element"));
+        
+        // Print out the exception message
+        System.out.println("Exception Message: " + exception.getMessage());
     }
 
     @Test
@@ -88,9 +94,13 @@ public class MyArrayListTests {
         assertEquals("Element 2", myList.get(1));
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void testGetOutOfBounds() {
-        myList.get(0);
+        
+        Throwable exception = assertThrows(IndexOutOfBoundsException.class, () -> myList.get(0));
+        
+        // Print out the exception message
+        System.out.println("Exception Message: " + exception.getMessage());
     }
 
     @Test
@@ -106,33 +116,3 @@ public class MyArrayListTests {
         assertFalse(iterator.hasNext());
     }
 }
-
-/*
-public class MyArrayListTests {
-    
-    public MyArrayListTests() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-}
-*/

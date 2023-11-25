@@ -2,32 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package tests;
+package test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+
+import ADTs.Iterator;
+import ADTs.StackADT;
+import utility.MyStack;
+import java.util.EmptyStackException;
+
 
 /**
  *
  * @author izalu
  */
-import static org.junit.Assert.*;
-
-import ADTs.Iterator;
-import ADTs.StackADT;
-import org.junit.*;
-
-import java.util.EmptyStackException;
-
-public class MyStackTests {
+public class MyStackTest {
 
     private StackADT<String> myStack;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         myStack = new MyStack<>();
     }
@@ -41,9 +39,16 @@ public class MyStackTests {
         assertTrue(myStack.isEmpty());
     }
 
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void testPopEmptyStack() {
-        myStack.pop();
+        
+        Throwable exception = assertThrows(EmptyStackException.class, () ->{
+            myStack.pop();
+        });
+        
+        // Print out the exception message
+        System.out.println("Exception Message: " + exception.getMessage());
+        
     }
 
     @Test
@@ -54,9 +59,15 @@ public class MyStackTests {
         assertFalse(myStack.isEmpty());
     }
 
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void testPeekEmptyStack() {
-        myStack.peek();
+        Throwable exception = assertThrows(EmptyStackException.class, () ->{
+            myStack.peek();
+        });
+        
+        // Print out the exception message
+        System.out.println("Exception Message: " + exception.getMessage());
+ 
     }
 
     @Test
@@ -121,32 +132,3 @@ public class MyStackTests {
         assertTrue(myStack.equals(otherStack));
     }
 }
-/*
-public class MyStackTests {
-    
-    public MyStackTests() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-}
-*/

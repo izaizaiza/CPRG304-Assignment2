@@ -14,6 +14,12 @@ import utility.MyArrayList;
 
 import java.util.EmptyStackException;
 
+
+/**
+ * 
+ * @author 
+ * @param <E> 
+ */
 public class MyStack<E> implements StackADT<E> {
     private MyArrayList<E> list;
 
