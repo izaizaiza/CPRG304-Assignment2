@@ -70,4 +70,36 @@
     nbproject/build-impl.xml file. 
 
     -->
+   
+   
+    
+      
+    <!-- Import build-impl.xml -->
+    <import file="nbproject/build-impl.xml"/>
+    
+    <!-- Define JUnit classpath -->
+    <path id="classpath.test">
+        <pathelement location="path/to/junit.jar"/>
+        <!-- Add other dependencies if needed -->
+        <!-- <pathelement location="path/to/your/project/classes"/> -->
+    </path>
+    
+    <!-- Define a target for running JUnit tests -->
+    <target name="run-tests" depends="compile-test">
+        <junit printsummary="yes" fork="yes" haltonfailure="yes">
+            <classpath>
+                <path refid="classpath.test"/>
+                <pathelement location="${build.test.classes.dir}"/>
+            </classpath>
+            <!-- Specify your test suites or individual test classes here -->
+            <batchtest fork="true" todir="${reports.tests}">
+                <fileset dir="${test.src.dir}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+    
+
+
 </project>

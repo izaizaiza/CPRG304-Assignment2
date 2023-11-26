@@ -1,27 +1,30 @@
+package test;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package test;
+
 
 
 import org.junit.jupiter.api.BeforeEach;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
 import ADTs.Iterator;
 import ADTs.StackADT;
-import utility.MyStack;
 import java.util.EmptyStackException;
+import utility.MyStack;
 
 
 /**
  *
  * @author izalu
  */
-public class MyStackJUnitTest {
+public class MyStackTest {
 
     private StackADT<String> myStack;
 

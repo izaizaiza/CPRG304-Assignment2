@@ -59,6 +59,10 @@ public class MyArrayList<E> implements ListADT<E> {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
+        
+        if (toAdd == null){
+            throw new NullPointerException("Given element is null");
+        }
 
         ensureCapacity(size + 1);
 

@@ -1,12 +1,14 @@
+package test;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package test;
+
 
 import org.junit.jupiter.api.BeforeEach;
-
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+//import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -18,8 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import ADTs.Iterator;
 import ADTs.ListADT;
 import utility.MyDLL;
+import utility.MyDLL;
 
-public class MyDLLJUnitTest {
+public class MyDLLTest {
 
     private ListADT<String> myList;
 
@@ -212,4 +215,3 @@ public class MyDLLJUnitTest {
         assertFalse(iterator.hasNext());
     }
 }
-

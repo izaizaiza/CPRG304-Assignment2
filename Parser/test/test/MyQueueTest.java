@@ -1,12 +1,15 @@
+package test;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package test;
+
 
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -18,7 +21,7 @@ import ADTs.QueueADT;
 import exceptions.EmptyQueueException;
 import utility.MyQueue;
 
-public class MyQueueJUnitTest {
+public class MyQueueTest {
 
     private QueueADT<Integer> queue;
 
