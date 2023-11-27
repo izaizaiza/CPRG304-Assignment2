@@ -19,41 +19,46 @@ import utility.MyArrayList;
 
 
 /**
- *
+ * @author dlg12
  * @author izalu
  */
 
 
 public class MyArrayListTest {
 
-    private ListADT<String> myList;
+    private MyArrayList<String> myList;
 
-    @BeforeEach
-    public void setUp() {
-        myList = new MyArrayList<>();
-    }
+    //for some reason this setUp is not working
+    //@BeforeEach
+    //public void setUp() {
+    //    myList = new MyArrayList<>();
+    //}
     
 
     @Test
     public void testSize() {
+         myList = new MyArrayList<>();
         assertEquals(0, myList.size());
-        myList.add("Element 1");
-        assertEquals(1, myList.size());
-        myList.add("Element 2");
-        assertEquals(2, myList.size());
+        this.myList.add("Element 1");
+        assertEquals(2, myList.size()); // supposed to fail since only one is added
+        this.myList.add("Element 2");
+        //assertEquals(2, myList.size()); // this will pass
     }
 
     @Test
     public void testClear() {
+        myList = new MyArrayList<>();
+        myList = new MyArrayList<>();
         myList.add("Element 1");
         myList.add("Element 2");
         myList.clear();
         assertEquals(0, myList.size());
-        assertTrue(myList.isEmpty());
+        assertFalse(myList.isEmpty()); // this should fail b/c myList should be empty
     }
 
     @Test
     public void testAddAtIndex() {
+        myList = new MyArrayList<>();
         myList.add("Element 1");
         myList.add("Element 2");
         myList.add(1, "New Element");
@@ -62,29 +67,25 @@ public class MyArrayListTest {
         assertEquals("Element 2", myList.get(2));
     }
     
+    
     @Test
     public void testAddAtIndexOutOfBounds() {
-        try {
-            myList.add(1, "Element");
-            fail("Expected IndexOutOfBoundsException but no exception was thrown");
-        } catch (IndexOutOfBoundsException e) {
-            // Expected exception, you can perform additional assertions on the exception
-            System.out.println("Exception Message: " + e.getMessage());
-        }
+        myList.add("Element 1");
+        Throwable exception1 =
+        assertThrows(IndexOutOfBoundsException.class, () -> myList.add(-1, "Element")); // should pass because no IndexOutOfBounds thrown
+        
+        Throwable exception2 =
+        assertThrows(IndexOutOfBoundsException.class, () -> myList.add(1, "Element")); // should fail because no IndexOutOfBounds thrown
+        
+         //Print out the exception message
+        System.out.println("Exception Message: " + exception2.getMessage());
     }
 
 
-    //@Test
-    //public void testAddAtIndexOutOfBounds() {
-    //    Throwable exception =
-    //    assertThrows(IndexOutOfBoundsException.class, () -> myList.add(1, "Element"));
-        
-        // Print out the exception message
-    //    System.out.println("Exception Message: " + exception.getMessage());
-    //}
 
     @Test
     public void testAddElement() {
+        myList = new MyArrayList<>();
         assertTrue(myList.isEmpty());
         myList.add("New Element");
         assertFalse(myList.isEmpty());
@@ -93,6 +94,7 @@ public class MyArrayListTest {
 
     @Test
     public void testAddAll() {
+        myList = new MyArrayList<>();
         ListADT<String> anotherList = new MyArrayList<>();
         anotherList.add("Element 1");
         anotherList.add("Element 2");
@@ -104,6 +106,7 @@ public class MyArrayListTest {
 
     @Test
     public void testGet() {
+        myList = new MyArrayList<>();
         // assert to ensure myList is not null
         assertNotNull(myList, "myList should not be null");
         
@@ -123,26 +126,19 @@ public class MyArrayListTest {
     
     @Test
     public void testGetOutOfBounds() {
-        try {
-            myList.get(0);
-            fail("Expected IndexOutOfBoundsException but no exception was thrown");
-        } catch (IndexOutOfBoundsException e) {
-            // Expected exception, you can perform additional assertions on the exception
-            System.out.println("Exception Message: " + e.getMessage());
-        }
-    }
-    
-    //@Test
-    //public void testGetOutOfBounds() {
-        
-    //    Throwable exception = assertThrows(IndexOutOfBoundsException.class, () -> myList.get(0));
+        myList = new MyArrayList<>();
+        myList.add("Element 1");
+        Throwable exception1 = assertThrows(IndexOutOfBoundsException.class, () -> myList.get(-1)); // should pass because no Index Out of bounds is thrown
+        Throwable exception2 = assertThrows(IndexOutOfBoundsException.class, () -> myList.get(0)); // should fail because no Index Out of bounds is thrown
         
         // Print out the exception message
-    //    System.out.println("Exception Message: " + exception.getMessage());
-    //}
+        System.out.println("Exception Message: " + exception2.getMessage());
+    }
+    
 
     @Test
     public void testIterator() {
+        myList = new MyArrayList<>();
         myList.add("Element 1");
         myList.add("Element 2");
 

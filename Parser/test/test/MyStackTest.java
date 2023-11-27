@@ -21,20 +21,22 @@ import utility.MyStack;
 
 
 /**
- *
+ * @author dlg12
  * @author izalu
  */
 public class MyStackTest {
 
     private StackADT<String> myStack;
 
-    @BeforeEach
-    public void setUp() {
-        myStack = new MyStack<>();
-    }
+    //for some reason this setUp is not working
+    //@BeforeEach
+    //public void setUp() {
+    //    myStack = new MyStack<>();
+    //}
 
     @Test
     public void testPushAndPop() {
+        myStack = new MyStack<>();
         myStack.push("Element 1");
         myStack.push("Element 2");
         assertEquals("Element 2", myStack.pop());
@@ -44,7 +46,7 @@ public class MyStackTest {
 
     @Test
     public void testPopEmptyStack() {
-        
+        myStack = new MyStack<>();
         Throwable exception = assertThrows(EmptyStackException.class, () ->{
             myStack.pop();
         });
@@ -56,14 +58,16 @@ public class MyStackTest {
 
     @Test
     public void testPeek() {
+        myStack = new MyStack<>();
         myStack.push("Element 1");
         myStack.push("Element 2");
-        assertEquals("Element 2", myStack.peek());
-        assertFalse(myStack.isEmpty());
+        assertEquals("Element 2", myStack.peek()); // pass
+        assertEquals("Element 1", myStack.peek()); // fail b/c the last one is 2 not Element 1
     }
 
     @Test
     public void testPeekEmptyStack() {
+        myStack = new MyStack<>();
         Throwable exception = assertThrows(EmptyStackException.class, () ->{
             myStack.peek();
         });
@@ -75,32 +79,38 @@ public class MyStackTest {
 
     @Test
     public void testClear() {
+        myStack = new MyStack<>();
         myStack.push("Element 1");
         myStack.push("Element 2");
         myStack.clear();
         assertTrue(myStack.isEmpty());
+        assertFalse(myStack.isEmpty()); // should fail
     }
 
     @Test
     public void testSize() {
+        myStack = new MyStack<>();
         myStack.push("Element 1");
         myStack.push("Element 2");
         assertEquals(2, myStack.size());
         myStack.pop();
-        assertEquals(1, myStack.size());
+        assertEquals(2, myStack.size()); // should fail b/c we popped one
     }
 
     @Test
     public void testSearch() {
+        myStack = new MyStack<>();
         myStack.push("Element 1");
         myStack.push("Element 2");
         myStack.push("Element 3");
         assertEquals(2, myStack.search("Element 2"));
         assertEquals(-1, myStack.search("Element 4"));
+        assertEquals(1, myStack.search("Element 1")); // should fail
     }
 
     @Test
     public void testToArray() {
+        myStack = new MyStack<>();
         myStack.push("Element 1");
         myStack.push("Element 2");
         Object[] array = myStack.toArray();
@@ -111,6 +121,7 @@ public class MyStackTest {
 
     @Test
     public void testIterator() {
+        myStack = new MyStack<>();
         myStack.push("Element 1");
         myStack.push("Element 2");
 
@@ -125,6 +136,7 @@ public class MyStackTest {
 
     @Test
     public void testEquals() {
+        myStack = new MyStack<>();
         myStack.push("Element 1");
         myStack.push("Element 2");
 
@@ -133,5 +145,8 @@ public class MyStackTest {
         otherStack.push("Element 2");
 
         assertTrue(myStack.equals(otherStack));
+        
+        otherStack.push("Element 3");
+        assertTrue(myStack.equals(otherStack)); // fail b/c we added one more
     }
 }

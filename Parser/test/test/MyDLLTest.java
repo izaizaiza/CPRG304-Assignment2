@@ -12,7 +12,7 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
+ * @author dlg12
  * @author izalu
  */
 
@@ -25,32 +25,36 @@ import utility.MyDLL;
 public class MyDLLTest {
 
     private ListADT<String> myList;
-
-    @BeforeEach
-    public void setUp() {
-        myList = new MyDLL<>();
-    }
+    
+    //for some reason this setUp is not working
+    //@BeforeEach
+    //public void setUp() {
+    //    myList = new MyDLL<>();
+    //}
 
     @Test
     public void testSize() {
+        myList = new MyDLL<>();
         assertEquals(0, myList.size());
         myList.add("Element 1");
-        assertEquals(1, myList.size());
-        myList.add("Element 2");
-        assertEquals(2, myList.size());
+        assertEquals(0, myList.size()); // should fail cause now there is a node in the DLL
+        //myList.add("Element 2");
+        //assertEquals(2, myList.size()); // should pass
     }
 
     @Test
     public void testClear() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
         myList.clear();
         assertEquals(0, myList.size());
-        assertTrue(myList.isEmpty());
+        assertFalse(myList.isEmpty()); // should fail b/c myList is should be empty
     }
 
     @Test
     public void testAddAtIndex() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
         myList.add(1, "New Element");
@@ -63,6 +67,7 @@ public class MyDLLTest {
 
     @Test
     public void testAddAtIndexOutOfBounds() {
+        myList = new MyDLL<>();
         Throwable exception = assertThrows(IndexOutOfBoundsException.class, () ->{
             myList.add("Element 1");
             myList.add("Element 2");
@@ -76,6 +81,7 @@ public class MyDLLTest {
 
     @Test
     public void testAddElement() {
+        myList = new MyDLL<>();
         assertTrue(myList.isEmpty());
         myList.add("New Element");
         assertFalse(myList.isEmpty());
@@ -85,6 +91,7 @@ public class MyDLLTest {
 
     @Test
     public void testAddAll() {
+        myList = new MyDLL<>();
         ListADT<String> toAdd = new MyDLL<>();
         toAdd.add("Element 1");
         toAdd.add("Element 2");
@@ -98,6 +105,7 @@ public class MyDLLTest {
 
     @Test
     public void testGet() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
         assertEquals("Element 1", myList.get(0));
@@ -106,6 +114,7 @@ public class MyDLLTest {
 
     @Test
     public void testGetOutOfBounds() {
+        myList = new MyDLL<>();
         
         Throwable exception = assertThrows(IndexOutOfBoundsException.class, () -> {
             myList.get(0);
@@ -117,6 +126,7 @@ public class MyDLLTest {
 
     @Test
     public void testRemoveAtIndex() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
         String removed = myList.remove(1);
@@ -127,6 +137,7 @@ public class MyDLLTest {
 
     @Test
     public void testRemoveAtIndexOutOfBounds() {
+        myList = new MyDLL<>();
         
         Throwable exception = assertThrows(IndexOutOfBoundsException.class, () -> {
             myList.remove(0);
@@ -138,6 +149,7 @@ public class MyDLLTest {
 
     @Test
     public void testRemoveElement() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
         String removed = myList.remove("Element 1");
@@ -149,13 +161,17 @@ public class MyDLLTest {
 
     @Test
     public void testRemoveElementNotInList() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
-        assertNull(myList.remove("Element 3"));
-        assertEquals(2, myList.size());
+        Object retturn = myList.remove("Element 3");
+        assertNull(retturn); // pass
+        assertEquals("Element 2", retturn); // should fail b/c it retturn should be null since the object wanted to be removed is not in the DLL
+        assertEquals(2, myList.size()); //should pass
     }
     @Test
     public void testSet() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
         String oldElement = myList.set(1, "New Element");
@@ -167,7 +183,7 @@ public class MyDLLTest {
 
     @Test
     public void testSetOutOfBounds() {
-        
+        myList = new MyDLL<>();
         Throwable exception = 
         assertThrows(IndexOutOfBoundsException.class, () -> {
             myList.set(0, "New Element");
@@ -180,29 +196,33 @@ public class MyDLLTest {
 
     @Test
     public void testIsEmpty() {
-        assertTrue(myList.isEmpty());
+        myList = new MyDLL<>();
+        assertTrue(myList.isEmpty()); //pass
         myList.add("Element 1");
-        assertFalse(myList.isEmpty());
+        assertTrue(myList.isEmpty()); // fails cause now there is an element/node
     }
 
     @Test
     public void testContains() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
-        assertTrue(myList.contains("Element 1"));
-        assertFalse(myList.contains("Element 3"));
+        assertTrue(myList.contains("Element 1")); //should pass
+        assertTrue(myList.contains("Element 3")); // should fail b/c Element 3 is indeed not in the DLL
     }
 
     @Test
     public void testToArray() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
         Object[] array = myList.toArray();
-        assertArrayEquals(new Object[]{"Element 1", "Element 2"}, array);
+        assertArrayEquals(new Object[]{"Element 1", "Element 3"}, array); // will fail because 2nd element is not the same value
     }
 
     @Test
     public void testIterator() {
+        myList = new MyDLL<>();
         myList.add("Element 1");
         myList.add("Element 2");
 

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author izalu
+ * 
  * @author dlg12
  */
 public class EmptyQueueException extends Exception{

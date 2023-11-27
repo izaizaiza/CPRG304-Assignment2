@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 /**
  *
  * @author dlg12
+ * @author izalu
  * @param <E> - the data type of the elements in the array list
  * 
  */
